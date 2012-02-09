@@ -12,18 +12,6 @@ body { margin:50px 0px; padding:0px; text-align:center;}
 	position:relative;
 	left:50px;
 }
-.hitMe-button {
-	background: none repeat scroll 0 0 red;
-    cursor: pointer;
-	height: 40px;
-	left: 7px;
-	position: relative;
-	top: 160px;
-	width: 26px;
-}
-.hitMe-button:hover {background:blue}
-=======
->>>>>>> parent of 00779f2... added card button
 h1, p, li, ul, ol {font-family:Arial;color:#d3d3d3;}
 
 footer { 
