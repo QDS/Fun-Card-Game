@@ -1,2 +1,10 @@
-body{margin: 0 auto; background:green; width:400px; padding:30px; border:10px dotted #fff;}
+body { margin:50px 0px; padding:0px; text-align:center;}
+#Content {
+	width:600px;
+	margin:0px auto;
+	text-align:left;
+	padding:15px;
+	border:5px dotted #dedede;
+	background-color:green;
+	}
 h1, p, li, ul, ol {font-family:Arial;color:#d3d3d3;}
