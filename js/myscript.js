@@ -1,11 +1,6 @@
 /*
 PSA: Practice good coding and comment everything. Have a nice day :)
 */
-function displayDate()
-{
-document.getElementById("demo").innerHTML=Date();
-}
-
 var gameOver; var cardCount;
 function Shuffle(max){
 var num=Math.random()*max;
