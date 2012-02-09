@@ -20,6 +20,7 @@ body { margin:50px 0px; padding:0px; text-align:center;}
 	position: relative;
 	top: 160px;
 	width: 26px;
+	border: none;
 }
 .hitMe-button:hover {background:blue}
 h1, p, li, ul, ol {font-family:Arial;color:#d3d3d3;}
