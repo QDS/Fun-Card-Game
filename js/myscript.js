@@ -5,83 +5,100 @@ function displayDate()
 {
 document.getElementById("demo").innerHTML=Date();
 }
-var card1;
-var card2; 
-var card3;
-var card4;
-var card5;
-var card6;
-var card7;
-var card8;
-var card9;
-var card10;
-var card11;
-var card12;
-var card13;
-var card14;
-var card15;
-var card16;
-var card17;
-var card18;
-var card19;
-var card20;
-var card21;
-var card22;
-var card23;
-var card24;
-var card25;
-var card26;
-var card27;
-var card28;
-var card29;
-var card30;
-var card31;
-var card32;
-var card33;
-var card34;
-var card35;
-var card36;
-var card37;
-var card38;
-var card39;
-var card40;
-var card41;
-var card42;
-var card43;
-var card44;
-var card45;
-var card46;
-var card47;
-var card48;
-var card49;
-var card50;
-var card51;
-var card52;
-var deck = new Array [card1, card2, card3, card4, card5, card6, card7, card8, card9, card10, card11, card12, card13, card14, card15, card16, card17, card18, card19, card20, card21, card22, card23, card24, card25, card26, card27, card28, card29, card30, card31, card32, card33, card34, card35, card36, card37, card38, card39, card40, card41, card42, card43, card44, card45, card46, card47, card48, card49, card50, card51, card52];
 
-for (i=0, i<=51, i=i+13) {
-	deck[i].name = "Ace";
+var gameOver; var cardCount;
+function Shuffle(max){
+var num=Math.random()*max;
+return Math.round(num)+1;
 }
-
-for (i=1, i<=51, i=i+13) {
-	deck[i].name = "Two";
+function getSuit(){
+suit = Shuffle(4);
+if(suit == 1) return "Spades";
+if(suit == 2) return "Clubs";
+if(suit == 3) return "Diamonds";
+else return "Hearts";
 }
-
-for (i=0, i <= 12, i++) {
-	deck[i].suit = "Hearts";
+function cardName(card){
+if(card == 1) return "Ace";
+if(card == 11) return "Jack";
+if(card == 12) return "Queen";
+if(card == 13) return "King";
+return "" + card;
 }
-
-for (i=13, i <= 25, i++) {
-	deck[i].suit = "Clubs";
+function cardValue(card,strWho){
+if(card == 1) {
+   if(strWho =="You" && document.display.you.value >10){
+   document.display.say2.value=document.display.say2.value+" Low"; return 1;}
+   else return 11; }
+if(card > 10) return 10; 
+return card;
 }
-
-for (i=26, i <= 38, i++) {
-	deck[i].suit = "Spades";
+function PickACard(strWho){
+card = Shuffle(12);
+suit = getSuit();
+if(strWho =="You")
+document.display.say2.value=(cardName(card) + " of " + suit);
+else
+document.display.say1.value=(cardName(card) + " of " + suit);
+return cardValue(card,strWho);
 }
-
-for (i=39, i<= 51, i++) {
-	deck[i].suit = "Diamonds";
+function NewHand(form){
+if(gameOver !=0)
+{form.say1.value=("Hand in Play!"); form.say2.value=(""); return;}
+else
+{form.dealer.value = 0; form.you.value = 0; cardCount=0;
+form.dealer.value = eval(form.dealer.value) + PickACard("Dealer");
+form.you.value = eval(form.you.value) + PickACard("You");
+gameOver= -1; cardCount+=1;}
 }
-
+function Dealer(form){
+if (gameOver ==0)
+{form.say1.value=("Deal the Cards!"); form.say2.value=(""); return;}
+else
+if(form.you.value<10)
+{form.say1.value=("Not Below Ten!"); form.say2.value=("Take a Hit!"); return;}
+else
+if (cardCount <2)
+{form.say1.value=("Minimum 2 Cards!"); form.say2.value=("Hit Again!"); return;}
+else
+while(form.dealer.value < 17)
+{form.dealer.value = eval(form.dealer.value) + PickACard("Dealer");}
+}
+function User(form){
+if (gameOver ==0)
+{form.say1.value=("Deal the Cards!"); form.say2.value=(""); return;}
+else
+{cardCount+=1; form.say1.value=("You Get...");
+form.you.value = eval(form.you.value) + PickACard("You");}
+if(form.you.value > 21)
+{form.say1.value=("You Busted!");
+gameOver=0; form.numgames.value=eval(form.numgames.value)-1;}
+}
+function LookAtHands(form){
+if (gameOver ==0 || form.you.value<10 || cardCount <2){return;}
+else
+if(form.dealer.value > 21)
+{form.say1.value=("House Busts!"); form.say2.value=("You Win! $$$$$$");
+gameOver=0; form.numgames.value=eval(form.numgames.value)+1;}
+else
+if(form.you.value > form.dealer.value)
+{form.say1.value=("You Win!"); form.say2.value=("$$$$$$$$$$$$$$$");
+gameOver=0; form.numgames.value=eval(form.numgames.value)+1;}
+else
+if(form.dealer.value == form.you.value)
+{form.say1.value=("Game Tied!"); form.say2.value=("Try Again!");
+gameOver=0; form.numgames.value=eval(form.numgames.value)-1;}
+else
+{form.say1.value=("House Wins!"); form.say2.value=("Tough Luck!");
+gameOver=0; form.numgames.value=eval(form.numgames.value)-1;}
+}
+function setBj(){
+gameOver=0; cardCount=0; 
+document.display.dealer.value=""; 
+document.display.you.value="";
+document.display.numgames.value="0";
+document.display.say1.value="    Hit 'Deal'";
+document.display.say2.value="    To Start!";
+}
 
 
