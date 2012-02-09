@@ -8,6 +8,30 @@
 <h1 align="center"><img src="images/joker.jpg" alt="Why so serious" width="169px" height="225px" />Fun with cards<img src="images/joker.jpg" alt="Why so serious" width="169px" height="225px" /></h1>
 <p id="demo" align="center">Lets have some fun with cards</p>
 <div align="center"><button type="button" onclick="displayDate()">Display Date</button></div>
+<br>
+<center>
+<form name="display">
+<table bgcolor="#c0c0c0" border="1" cellspacing="0" cellpadding="3">
+<tr>
+<td><center>Score:</center></td>
+<td><center>Dealer</center></td>
+<td><center><input type=text name="dealer" size="2"></center></td>
+<td><center>Card(s):  <input type=text name="say1" size="18" value=""></center></td>
+</tr>
+<tr>
+<td><center><input type=text name="numgames" size="3" value="0"></center></td>
+<td><center>Player</center></td>
+<td><center><input type=text name="you" size="2"></center></td>
+<td><center>Card(s):  <input type=text name="say2" size="18" value=""></center></td>
+</tr>
+<tr>
+<td><center><input type=button value="Deal" onClick="NewHand(this.form)"></center></td>
+<td colspan=3><center>
+<input type=button value="Stand" onClick="Dealer(this.form);LookAtHands(this.form);">
+<input type=button value=" Hit " onClick="User(this.form)"></center></td></tr>
+</table>
+</form>
+</center>
 </div>
 </body>
 <footer>Copyright QDS 2012</footer>
